@@ -1,0 +1,566 @@
+  /* Niente overflow orizzontale di riserva */
+    html, body { overflow-x: hidden; }
+    body { background: linear-gradient(180deg, #0b0b1a 0%, #12123b 45%, #1d1e57 100%); }
+
+    /* ========== SIDEBAR (gradiente + full-height) ========== */
+    .sidenav{
+      background: linear-gradient(180deg, #0b0b1a 0%, #12123b 45%, #1d1e57 100%);
+      color: rgba(255,255,255,.85);
+      border-right: 1px solid rgba(255,255,255,.08);
+      padding: 32px 24px;
+    }
+    .side-logo{ width:84px;height:84px;border-radius:50%;opacity:.9;
+      background: conic-gradient(from 45deg, #76e1a1, #67c5ff, #f6ba6f, #f67777, #76e1a1);
+      margin-bottom:24px;
+    }
+    .side-title{ text-transform:uppercase; letter-spacing:.15rem; font-weight:700;
+      font-size:1.4rem; color:#fff; margin-bottom:28px;
+    }
+    .side-title .muted{ font-weight:400; color:rgba(255,255,255,.55); }
+    .menu-label{ font-weight:700; text-transform:uppercase; letter-spacing:.12rem;
+      color:#fff; margin:12px 0 8px; font-size:.95rem;
+    }
+    .side-nav .nav-link{ color:rgba(255,255,255,.6); text-transform:uppercase;
+      letter-spacing:.06rem; padding:.35rem 0; font-size:.92rem;
+    }
+    .side-nav .nav-link:hover, .side-nav .nav-link.active{ color:#fff; }
+
+
+    /* La riga che contiene sidebar + main si “stende” */
+.container-fluid > .row.g-0{
+  align-items: stretch;
+  min-height: 100vh;         /* almeno tutta la viewport */
+}
+
+/* La colonna sidebar usa flex per far crescere il nav */
+.sidebar-col{ display: flex; }
+
+/* Desktop: l’offcanvas diventa pannello della colonna e si estende in altezza */
+@media (min-width: 768px){
+  #sidebar.offcanvas-md{
+    position: sticky;        /* resta ancorata in alto */
+    top: 0;
+    transform: none;
+    visibility: visible !important;
+
+    width: 100%;
+    --bs-offcanvas-width: 100%;  /* usa la larghezza della colonna */
+
+    height: auto;               /* <-- niente 100vh fisso */
+    min-height: 100%;           /* riempi la colonna */
+    flex: 1 1 auto;             /* cresce per tutta l'altezza disponibile */
+  }
+  .offcanvas-backdrop{ display: none !important; }
+}
+
+/* Il contenuto interno occupa tutta l'altezza del nav */
+.sidenav{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.sidenav .offcanvas-body{
+  flex: 1 1 auto;      /* spinge il body ad allungarsi */
+  overflow: auto;      /* scroll interno se serve */
+}
+
+/* Sicurezza: niente scroll orizzontale accidentale */
+html, body { overflow-x: hidden; }
+
+
+
+
+
+/* Featured cards */
+
+/* Contenitore del cerchio */
+.c-progress{
+  position: relative;
+  width: var(--size,120px);
+  height: var(--size,120px);
+  display: grid;
+  place-items: center;
+}
+
+/* L’anello parte dall’alto (–90°) */
+.ring{ width:100%; height:100%; transform: rotate(-90deg); }
+
+/* Track di sfondo */
+.track{
+  fill: none;
+  stroke: var(--track, #1b214f);
+  stroke-width: var(--stroke, 12);
+  opacity: .35;
+}
+
+/* Barra attiva (effetto “C”) */
+.bar{
+  fill: none;
+  stroke: var(--bar, #54d14a);
+  stroke-width: var(--stroke, 12);
+  stroke-linecap: round;              /* estremità arrotondate */
+  stroke-dasharray: 263;              /* ≈ 2π * r (r=42) */
+  stroke-dashoffset: calc(263 - (263 * var(--percent, 0) / 100));
+  transition: stroke-dashoffset .6s ease;
+}
+
+/* Percentuale al centro */
+.label{
+  position: absolute;
+  font: 600 1.05rem/1.1 system-ui, sans-serif;
+  color: #fff;
+}
+
+.cardbg{
+    border-radius: 20PX;
+    background-color:  #2D2F84 ;
+}
+
+/* Card sfondo richiesto */
+.timeline-card{
+  background-color:#2D2F84;     /* << richiesto */
+  color:#fff;
+  border-radius:16px;
+  padding:16px 18px 22px;
+}
+
+/* Titolo */
+.tl-title{
+  margin:0 0 10px;
+  font-weight:700;
+  opacity:.95;
+}
+
+/* Linea + nodi */
+.timeline{
+  --track: rgba(255,255,255,.45);
+  position:relative;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:22px;
+  padding:28px 12px 0;
+  margin:0;
+  min-height:90px;
+}
+
+/* linea orizzontale */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:12px; right:12px;
+  top:62px;                       /* altezza della linea */
+  height:3px;
+  background: var(--track);
+  border-radius:2px;
+}
+
+/* ogni punto */
+.timeline > li{
+  position:relative;
+  flex:1;
+  text-align:center;
+}
+
+/* label sopra */
+.timeline > li > span{
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  bottom: calc(100% - 56px);      /* posiziona il testo sopra la linea */
+  white-space:nowrap;
+  opacity:.85;
+}
+
+/* tacche verticali dalla label alla linea */
+.timeline > li::after{
+  content:"";
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  top:36px;
+  width:2px; height:26px;
+  background: rgba(255,255,255,.45);
+}
+
+/* dot sulla linea */
+.timeline > li::before{
+  content:"";
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  top:56px;                        /* centrato sulla linea */
+  width:16px; height:16px;
+  border-radius:50%;
+  background: var(--c, #fff);
+  box-shadow: 0 0 0 3px rgba(0,0,0,.18);
+}
+
+/* Responsive: riduce gap e altezze */
+@media (max-width: 576px){
+  .timeline{ gap:14px; padding-left:8px; padding-right:8px; }
+  .timeline::before{ left:8px; right:8px; top:66px; }
+  .timeline > li::before{ top:60px; }
+  .timeline > li::after{ top:40px; height:24px; }
+}
+
+/* controlli rapidi */
+.timeline{
+  --line-y: 50px;      /* posizione verticale della linea */
+  --label-gap: 30px;   /* distanza extra tra linea e testo (aumenta qui) */
+  --dot: 16px;         /* diametro del pallino */
+  --tick: 26px;        /* altezza della tacchetta verticale */
+}
+
+/* applicazione variabili */
+.timeline::before{ top: var(--line-y); }
+
+.timeline > li::before{                      /* pallino sulla linea */
+  top: calc(var(--line-y) - var(--dot) / 2);
+}
+
+.timeline > li::after{                       /* tacchetta */
+  top: calc(var(--line-y) - var(--tick));
+  height: var(--tick);
+}
+
+.timeline > li > span{                       /* testo sopra la linea */
+  bottom: calc(100% - (var(--line-y) - var(--label-gap)));
+}
+
+
+
+/* Titoli */
+.card-traffic .title{
+  margin: 0 0 4px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+.card-traffic .subtitle{
+  margin: 0 0 14px;
+  opacity: .75;
+  font-size: .95rem;
+}
+
+/* Riga: etichetta + barra */
+.trow{ margin: 14px 0; }
+.tlabel{
+  font-size: .95rem;
+  margin-bottom: 6px;
+  opacity: .9;
+}
+
+/* Barra: track + riempimento a gradiente con glow */
+.tbar{
+  --h: 8px;                                        /* altezza barra */
+  --track: rgba(255,255,255,.12);                  /* colore track */
+  --grad: linear-gradient(90deg,
+           #ff6a6a, #ff9f3d, #ffd166, #6ee7b7,
+           #60a5fa, #a78bfa);                      /* gradiente */
+  position: relative;
+  height: var(--h);
+  background: var(--track);
+  border-radius: 999px;
+  overflow: visible;                               /* per il glow */
+}
+
+/* Riempimento */
+.tbar::before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--val, 0%);                           /* percentuale */
+  background: var(--grad);
+  border-radius: inherit;
+}
+
+/* Glow morbido */
+.tbar::after{
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: var(--val, 0%);
+  height: var(--h);
+  transform: translateY(-50%);
+  background: var(--grad);
+  border-radius: inherit;
+  filter: blur(6px);
+  opacity: .55;
+  pointer-events: none;
+}
+
+
+/* Titoli */
+.kpi-title{
+  margin:0 0 4px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.kpi-subtitle{
+  margin:0 0 12px;
+  opacity:.75;
+  font-size:.95rem;
+}
+
+/* Percentuale grande con gradiente */
+.kpi-value{
+  --grad: linear-gradient(90deg,#12774d,#11b259);
+  font-weight:800;
+  font-size: clamp(28px, 6vw, 48px);
+  line-height:1.05;
+  margin: 0 0 10px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent; /* testo “pieno” col gradiente */
+  text-shadow: 0 0 14px rgba(73,255,154,.18); /* leggero glow */
+}
+
+/* Lista descrizioni */
+.kpi-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.kpi-list li{
+  margin: 6px 0;
+  opacity:.9;
+}
+
+
+/* Card chiara  */
+.card-mini-bars{
+  border-radius: 18px;
+  padding: 16px 18px;
+  color:#fff;
+  display: grid;
+  grid-template-columns:  minmax(160px, 22%) 1fr;;
+  gap: 22px;
+  align-items: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+}
+
+/* Titoli/Testo */
+.card-mini-bars h6{ margin:0; font-weight:700; letter-spacing:.02em; }
+.card-mini-bars .mlead{ margin:.2rem 0 1rem; opacity:.85; }
+
+/* Contenitore barrette */
+.mbars{
+  --barW: 10px;              /* larghezza barretta */
+  --gap: 8px;               /* spazio tra barrette */
+  --grad: linear-gradient(to top, #ffd166 0%, #ff9f3d 22%, #ff6a6a 48%, #a78bfa 100%);
+  width: 0%;            /* puoi aumentare/ridurre */
+  height: 120px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;            /* centra orizzontalmente */
+  justify-self: center;  
+  grid-template-columns: repeat(8, var(--barW));
+  align-items: end;
+  gap: var(--gap);
+}
+
+/* Barre verticali */
+.mbars > span{
+  height: var(--h, 30%);
+  background: var(--grad);
+  border-radius: 999px;
+  position: relative;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
+}
+
+/* Glow alla base (sfumatura morbida) */
+.mbars > span::after{
+  content:"";
+  position:absolute;
+  left:50%; bottom:-2px;
+  width: 80%;
+  height: 8px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center,
+              rgba(255,209,102,.85) 0%,
+              rgba(255,209,102,0) 65%);
+  filter: blur(2px);
+  pointer-events:none;
+}
+
+/* Responsivo: stringe il blocco barre su schermi piccoli */
+@media (max-width: 575.98px){
+  .card-mini-bars{ grid-template-columns: 1fr; }
+  .mbars{ width: 100%; max-width: 240px; margin: 0 auto; }
+  .mcopy p{ margin-bottom: .35rem;
+            margin-left: 0; }
+}
+
+/* Card più chiara, coerente con il tuo tema */
+.cal-card{
+  border: 1px solid rgba(255,255,255,.18);
+  color:#fff;
+  border-radius: 16px;
+  padding: 12px 14px 14px;
+  width: min(300px, 100%);
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+}
+
+/* Header */
+.cal-header{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-bottom: 6px;
+}
+.cal-title{
+  font-weight: 700; letter-spacing:.02em; text-transform: capitalize;
+}
+.cal-nav{
+  background: transparent; color: #26e0d0;
+  border: 0; padding: 4px 6px; line-height:1; border-radius: 6px;
+}
+.cal-nav:hover{ filter: brightness(1.15); }
+
+/* Griglie */
+.cal-grid{
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px 4px;
+  font-size: .95rem;
+}
+.cal-weekdays{
+  margin: 4px 0 6px;
+  opacity:.9; text-align:center;
+  font-weight: 600;
+}
+.cal-weekdays .sun{ color:#ff6a6a; } /* domenica rossa */
+.cal-weekdays .sat{ color:#6ee7b7; } /* sabato verdino */
+
+.cal-day{
+  height: 28px; display:grid; place-items:center;
+  border-radius: 999px; position:relative;
+}
+
+/* today cerchiato */
+.cal-day.today{
+  outline: 2px solid rgba(255,255,255,.55);
+  outline-offset: -2px;
+}
+.cal-day.is-sunday{ color:#ff6a6a; }
+.cal-day.muted{ opacity:.45; }
+
+/* selezione (clic) */
+.cal-day.selected{
+  background: rgba(255,255,255,.16);
+}
+
+/* accessibilità focus */
+.cal-day:focus-visible{
+  box-shadow: 0 0 0 3px rgba(38,224,208,.55);
+  outline: none;
+}
+
+
+    /* Comportamento desktop (md+): l’offcanvas diventa colonna sticky a tutta altezza */
+    @media (min-width: 768px){
+      #sidebar.offcanvas-md{
+        position: sticky;  /* resta attaccata in alto */
+        top: 0;
+        height: 100vh;     /* tutta la pagina */
+        transform: none;
+        visibility: visible !important;
+        border-right: 1px solid rgba(255,255,255,.08);
+      }
+      .offcanvas-backdrop{ display:none !important; }
+    }
+
+    /* ========== TOPBAR (come lo shot) ========== */
+    .color{
+      background: linear-gradient(135deg, #17183a 0%, #272a6f 50%, #313391 100%);
+      padding: 18px 22px;
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      color:#fff;
+      border-radius:14px;
+      box-shadow: inset 0 -1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(0,0,0,.25);
+      margin-bottom:16px;
+    }
+    .dashboard-header{
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    }
+
+    /* Burger (solo mobile) */
+    .burger-btn{ color:#fff; border:1px solid rgba(255,255,255,.45); }
+    .burger-btn:hover{ color:#fff; }
+
+    /* Search pill */
+    .search-pill .form-control{
+      background: transparent; color:#eef;
+      border:1px solid rgba(255,255,255,.45); border-right:none;
+      border-radius:999px 0 0 999px; padding:.6rem 1rem;
+    }
+    .search-pill .form-control::placeholder{ color:rgba(255,255,255,.7); }
+    .search-pill .btn{
+      border:1px solid rgba(255,255,255,.45); border-left:none;
+      border-radius:0 999px 999px 0; color:#fff; padding:.6rem .9rem;
+    }
+
+    /* Icone + badge */
+    .icon-btn{ position:relative; font-size:22px; color:#fff; opacity:.9; line-height:1;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .icon-btn:hover{ opacity:1; transform:translateY(-1px); }
+    .icon-dot{ position:absolute; width:8px; height:8px; border-radius:50%; top:-2px; right:-2px;
+      box-shadow:0 0 0 2px rgba(255,255,255,.25);
+    }
+    .icon-dot--orange{ background:#ff8a3d; }
+    .icon-dot--red{ background:#ff4d4d; }
+
+    .avatar{ width:60px; height:60px; border-radius:50%; background:rgba(0,0,0,.25);
+      display:flex; align-items:center; justify-content:center; color:#fff; position:relative;
+    }
+    .avatar i{ font-size:22px; }
+    .status-online{ position:absolute; width:10px; height:10px; border-radius:50%;
+      background:#2ecc71; top:2px; right:2px; box-shadow:0 0 0 2px rgba(255,255,255,.25);
+    }
+
+    /* Search centrata */
+    .dashboard-search{ flex:1; display:flex; justify-content:flex-start; }
+
+    /* Mobile: offcanvas stretto e la colonna non occupa spazio nel layout */
+@media (max-width: 767.98px){
+  #sidebar.offcanvas { --bs-offcanvas-width: 85vw; max-width: 360px; }
+  .sidebar-col{ flex: 0 0 0; width: 0; padding: 0; }
+}
+
+.timeline.timeline--absolute{ position:relative; height:110px; }
+.timeline.timeline--absolute::before{ left:0; right:0; }
+.timeline.timeline--absolute li{
+  position:absolute; top:0; transform:translateX(-50%);
+}
+
+/* Variante a percentuale: il container non è flex e gli <li> sono assoluti */
+.timeline.timeline--absolute{
+  position: relative;
+  display: block;      /* ← evita layout flex ereditato */
+  height: 110px;
+}
+.timeline.timeline--absolute::before{ left: 0; right: 0; }
+.timeline.timeline--absolute > li{
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+
+
+/* Desktop (md+): l’offcanvas diventa statico e largo quanto la colonna */
+@media (min-width: 768px){
+  #sidebar.offcanvas-md{
+    position: sticky;
+    top: 0;
+    transform: none;
+    visibility: visible !important;
+    height: 100vh;
+
+    /* IMPORTANTISSIMO: usa la larghezza della colonna */
+    --bs-offcanvas-width: 100%;
+    width: 100%;
+    max-width: none;
+  }
+  .offcanvas-backdrop{ display: none !important; }
+}

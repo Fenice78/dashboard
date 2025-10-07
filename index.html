@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Bootstrap 5 (Sidebar responsive)</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- CSS personalizzato -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row g-0">
+    <!-- ========== SIDEBAR (responsive) ========== -->
+     <div class="sidebar-col col-md-3 col-lg-2 p-0">
+    <nav id="sidebar"
+         class="offcanvas offcanvas-start offcanvas-md  sidenav"
+         tabindex="-1"
+         aria-labelledby="sidebarLabel">
+      <!-- Header offcanvas (solo mobile) -->
+      <div class="offcanvas-header d-md-none">
+        <h5 class="offcanvas-title" id="sidebarLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Chiudi"></button>
+      </div>
+
+      <!-- Corpo sidebar -->
+      <div class="offcanvas-body p-0">
+        <div class="p-2">
+          <div class="side-logo"></div>
+          <div class="side-title">DASH<span class="muted">BOARD</span></div>
+
+          <div class="menu-label">Menu</div>
+          <ul class="nav flex-column side-nav">
+            <li class="nav-item"><a class="nav-link active" href="#">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Option</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Case</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Chart</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</div>
+    <!-- ========== MAIN ========== -->
+    <div class="col-md-9 col-lg-10 p-4">
+      <!-- Topbar -->
+      <div class="shadow-sm color">
+        <div class="dashboard-header">
+          <!-- Burger: visibile solo su mobile -->
+          <button class="btn burger-btn d-md-none me-2"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#sidebar"
+                  aria-controls="sidebar"
+                  aria-label="Apri menu">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Search pill -->
+          <form class="dashboard-search" role="search">
+            <div class="input-group search-pill w-100" style="max-width:560px">
+              <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+              <button class="btn btn-outline-light" type="submit" aria-label="Search">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Icone + avatar -->
+          <div class="d-flex align-items-center gap-4">
+            <a href="#" class="icon-btn" title="Chat">
+              <i class="fa-regular fa-comment-dots"></i>
+              <span class="icon-dot icon-dot--orange"></span>
+            </a>
+            <a href="#" class="icon-btn" title="Projects">
+              <i class="fa-solid fa-briefcase"></i>
+            </a>
+            <a href="#" class="icon-btn" title="Mail">
+              <i class="fa-regular fa-envelope"></i>
+              <span class="icon-dot icon-dot--red"></span>
+            </a>
+            <div class="avatar" title="Account">
+              <i class="fa-regular fa-user"></i>
+              <span class="status-online"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Titolo -->
+      <h4 class="mb-0 text-white">Dashboard</h4>
+
+      <!-- CONTENUTI DI ESEMPIO (lasciati come li avevi) -->
+      <div class="row m-3">
+        <div class="col-sm-2 mb-3 text-center">
+          <div class="card cardbg text-center p-4 text-white">
+            <div  id="kpi-1" class="c-progress mx-auto"
+              style="--size:140px; --stroke:18; --percent:84; --bar:#54d14a; --track:#12163a;">
+                <svg viewBox="0 0 100 100" class="ring" aria-label="84 percent">
+                  <!-- r = 42 -> circonferenza ≈ 263 -->
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="bar"   cx="50" cy="50" r="42"></circle>
+                </svg>
+                <span class="label">84%</span>
+            </div>
+            <h5 class="mt-3 ">Data</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-sm-2 mb-3">
+          <div class="card cardbg text-center p-4 text-white">
+            <div id="kpi-2" class="c-progress mx-auto"
+              style="--size:140px; --stroke:18; --percent:53; --bar:#ce1be2; --track:#12163a;">
+                <svg viewBox="0 0 100 100" class="ring" aria-label="53 percent">
+                  <!-- r = 42 -> circonferenza ≈ 263 -->
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="bar"   cx="50" cy="50" r="42"></circle>
+                </svg>
+                <span class="label">53%</span>
+            </div>
+            <h5 class="mt-3 ">Data</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-sm-2 mb-3">
+          <div class="card cardbg text-center p-4 text-white">
+            <div id="kpi-3" class="c-progress mx-auto"
+              style="--size:140px; --stroke:18; --percent:30; --bar:#e36e15; --track:#12163a;">
+                <svg viewBox="0 0 100 100" class="ring" aria-label="30 percent">
+                  <!-- r = 42 -> circonferenza ≈ 263 -->
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="bar"   cx="50" cy="50" r="42"></circle>
+                </svg>
+                <span class="label">30%</span>
+            </div>
+            <h5 class="mt-3 ">Data</h5>
+            <p>Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-sm-3 mb-3">
+          <div class="card card-kpi cardbg text-left p-4 text-white">
+                    <h6 class="kpi-title">Period</h6>
+            <p class="kpi-subtitle">Lorem dnfwed</p>
+            <div class="kpi-value">84%</div>
+            <p>Lorem dnfwned dfwdnkI</p>
+            <p>Lorem dnfwned dfwdnkI</p>
+            <p>Lorem dnfwned dfwdnkI</p>
+            <p>Lorem dnfwned dfwdnkI</p>
+            
+          </div>
+        </div>
+        <div id="traffic" class="col-sm-3 mb-3">
+          <div class="card cardbg text-left p-4 text-white">
+            <div class="card-traffic">
+          <h5 class="title">Traffic</h5>
+          <p class="subtitle">Lorem dnfwed</p>
+          <div class="trow">
+                <div class="tlabel">Lorem dnfwned</div>
+                <div class="tbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38" aria-label="Aria Name"
+                    style="--val:38%;"></div>
+            </div>
+
+      <div class="trow">
+        <div class="tlabel">Lorem dnfwned</div>
+        <div class="tbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85" aria-label="Aria Name"
+            style="--val:85%;"></div>
+      </div>
+
+      <div class="trow">
+        <div class="tlabel">Lorem dnfwned</div>
+        <div class="tbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="22" aria-label="Aria Name"
+            style="--val:22%;"></div>
+      </div>
+</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col-sm-6 mb-3">
+          <div class="card cardbg text-center p-4 text-white card-line">
+            <div class="card-head">
+    <h6>Period</h6>
+    <p>Lorem dnfwed</p>
+  </div>
+
+  <svg class="chart" viewBox="0 0 600 240" preserveAspectRatio="none" aria-label="Period chart">
+    <defs>
+      <!-- Gradiente della linea -->
+      <linearGradient id="lg-line" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#ff6a6a"/>
+        <stop offset="25%"  stop-color="#ff9f3d"/>
+        <stop offset="50%"  stop-color="#6ee7b7"/>
+        <stop offset="75%"  stop-color="#60a5fa"/>
+        <stop offset="100%" stop-color="#a78bfa"/>
+      </linearGradient>
+      <!-- Sfumatura area sotto curva -->
+      <linearGradient id="lg-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#60a5fa" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+      </linearGradient>
+      <!-- Clip per riempimento (non esce dai bordi) -->
+      <clipPath id="clip-plot">
+        <rect x="0" y="0" width="600" height="240" rx="14" ry="14"/>
+      </clipPath>
+    </defs>
+
+    <!-- Griglia -->
+    <g class="grid">
+      <line x1="0" y1="40"  x2="600" y2="40"/>
+      <line x1="0" y1="80"  x2="600" y2="80"/>
+      <line x1="0" y1="120" x2="600" y2="120"/>
+      <line x1="0" y1="160" x2="600" y2="160"/>
+      <line x1="0" y1="200" x2="600" y2="200"/>
+    </g>
+
+    <!-- Area sotto la curva -->
+    <g clip-path="url(#clip-plot)">
+      <path class="area" fill="url(#lg-fill)"
+            d="M0,180
+               C60,120 120,40 180,60
+               S300,170 360,140
+               S480,100 540,220
+               S600,210 600,210
+               L600,240 L0,240 Z"/>
+    </g>
+
+    <!-- Linea -->
+    <path class="line" stroke="url(#lg-line)" fill="none"
+          d="M0,180
+             C60,120 120,40 180,60
+             S300,170 360,140
+             S480,100 540,220
+             S600,210 600,210"/>
+  </svg>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <div class="card cardbg text-center p-4 text-white card-mini-bars">
+              <div id="miniBars" class="mbars mx-auto">
+    <span style="--h:10%"></span>
+    <span style="--h:18%"></span>
+    <span style="--h:28%"></span>
+    <span style="--h:42%"></span>
+    <span style="--h:56%"></span>
+    <span style="--h:68%"></span>
+    <span style="--h:82%"></span>
+    <span style="--h:94%"></span>
+  </div>
+
+  <div class="mcopy">
+    <h6 class="mt-1">Lorem</h6>
+    <p class="mlead">Lorem dnfwned</p>
+    <p>Lorem dnfwned dfwdnkI</p>
+    <p>Lorem dnfwned dfwdnkI</p>
+    <p>Lorem dnfwned dfwdnkI</p>
+    <p>Lorem dnfwned dfwdnkI</p>
+  </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col-sm-3 mb-3">
+          <div class="card cardbg text-left p-4 text-white">
+            <h5>Pages</h5>
+            <h6 class="mt-1">Lorem</h6>
+            <p class="mlead">Lorem dnfwned</p>
+            <p>Lorem dnfwned dfwdnkI</p>
+            </p>
+            <h6 class="mt-1">Lorem</h6>
+            <p class="mlead">Lorem dnfwned</p>
+            <p></p>Lorem dnfwned dfwdnkI</p>
+            </p>
+            <h6 class="mt-1">Lorem</h6>
+            <p class="mlead">Lorem dnfwned</p>
+            <p>Lorem dnfwned dfwdnkI</p>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-3 mb-3">
+          <div class="card cardbg text-left p-4 text-white cal-card">
+             <div class="cal-header">
+    <button class="cal-nav" data-dir="-1" aria-label="Mese precedente">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="cal-title" id="calTitle">Month</div>
+    <button class="cal-nav" data-dir="1" aria-label="Mese successivo">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- intestazione giorni -->
+  <div class="cal-grid cal-weekdays" aria-hidden="true">
+    <div class="sun">S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div class="sat">S</div>
+  </div>
+
+  <!-- giorni -->
+  <div class="cal-grid" id="calGrid" aria-live="polite"></div>
+          </div>
+        </div>
+         <div class="col-sm-6 mb-3 ">
+          <div class="cardbg text-white timeline-card">
+             <h6 class="tl-title">Timeline</h6>
+              <ol id="timeline" class="timeline timeline--absolute">
+                <li style="--c:#d51df2"><span>Task1</span></li>
+                <li style="--c:#a8e063"><span>Task2</span></li>
+                <li style="--c:#4da3ff"><span>Task3</span></li>
+                <li style="--c:#ffb44d"><span>Task4</span></li>
+              </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(() => {
+  const monthsIT = ["gennaio","febbraio","marzo","aprile","maggio","giugno",
+                    "luglio","agosto","settembre","ottobre","novembre","dicembre"];
+
+  const titleEl = document.getElementById('calTitle');
+  const gridEl  = document.getElementById('calGrid');
+  const card    = titleEl.closest('.cal-card');
+
+  let view = new Date();  // mese visualizzato
+  view.setDate(1);
+
+  function render(){
+    gridEl.innerHTML = '';
+    const year  = view.getFullYear();
+    const month = view.getMonth();
+
+    // intestazione "Mese Anno"
+    titleEl.textContent = `${monthsIT[month]} ${year}`;
+
+    const firstDow   = new Date(year, month, 1).getDay();      // 0=Dom
+    const daysInMon  = new Date(year, month+1, 0).getDate();
+    const today      = new Date();
+    const isThisMon  = today.getFullYear()===year && today.getMonth()===month;
+
+    // riempi spazi prima del 1
+    for(let i=0;i<firstDow;i++){
+      const d = document.createElement('div');
+      d.className = 'cal-day muted';
+      gridEl.appendChild(d);
+    }
+
+    // giorni del mese
+    for(let day=1; day<=daysInMon; day++){
+      const dow = new Date(year, month, day).getDay(); // 0=Dom
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'cal-day';
+      d.textContent = day;
+
+      if (dow === 0) d.classList.add('is-sunday');
+      if (isThisMon && day === today.getDate()) d.classList.add('today');
+
+      d.addEventListener('click', () => {
+        gridEl.querySelectorAll('.cal-day.selected').forEach(el=>el.classList.remove('selected'));
+        d.classList.add('selected');
+      });
+
+      gridEl.appendChild(d);
+    }
+  }
+
+  // navigazione
+  card.querySelectorAll('.cal-nav').forEach(btn=>{
+    btn.addEventListener('click', () => {
+      const dir = Number(btn.dataset.dir);
+      view.setMonth(view.getMonth() + dir);
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+<script>
+(async function(){
+  try {
+    const res = await fetch('./dashboard.json');      // stesso folder dell'HTML
+    if(!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+
+    /* --- KPI rings --- */
+    (data.kpis || []).forEach(k => {
+      const el = document.getElementById(k.id);
+      if (!el) return;
+      el.style.setProperty('--percent', k.value);
+      const label = el.querySelector('.label');
+      if (label) label.textContent = `${k.value}%`;
+    });
+
+    /* --- Traffic bars --- */
+    const tbars = document.querySelectorAll('#traffic .tbar');
+    data.traffic?.forEach((v, i) => {
+      const el = tbars[i];
+      if (el){
+        el.style.setProperty('--val', v + '%');
+        el.setAttribute('aria-valuenow', v);
+      }
+    });
+
+    /* --- Mini bar chart --- */
+    const mspans = document.querySelectorAll('#miniBars > span');
+    data.miniBars?.forEach((h, i) => {
+      if (mspans[i]) mspans[i].style.setProperty('--h', h + '%');
+    });
+
+    /* --- Line chart (path semplice e area) --- */
+    const pts = data.line || [];
+    const W = 600, H = 240, PAD = 20;
+    const min = Math.min(...pts, 0), max = Math.max(...pts, 100);
+    const scaleX = (i) => (i/(Math.max(pts.length-1,1))) * (W - PAD*2) + PAD;
+    const scaleY = (v) => H - PAD - ( (v - min) / (max - min || 1) ) * (H - PAD*2);
+
+    if (pts.length){
+      let d = `M ${scaleX(0)},${scaleY(pts[0])}`;
+      for (let i=1;i<pts.length;i++){ d += ` L ${scaleX(i)},${scaleY(pts[i])}`; }
+      const line = document.getElementById('linePath');
+      const area = document.getElementById('lineArea');
+      if (line) line.setAttribute('d', d);
+      if (area){
+        const dArea = `${d} L ${scaleX(pts.length-1)},${H-PAD} L ${scaleX(0)},${H-PAD} Z`;
+        area.setAttribute('d', dArea);
+      }
+    }
+
+    /* --- Calendar: evidenzia eventi --- */
+    const evDays = new Set(data.calendar?.events || []);
+    document.querySelectorAll('#calGrid .cal-day').forEach(btn=>{
+      const day = parseInt(btn.textContent, 10);
+      if (evDays.has(day)) btn.classList.add('has-event');
+    });
+    const style = document.createElement('style');
+    style.textContent = `.cal-day.has-event::after{content:"";width:6px;height:6px;border-radius:50%;background:#ff7149;position:absolute;bottom:4px;left:50%;transform:translateX(-50%);}`;
+    document.head.appendChild(style);
+
+    /* --- Timeline dinamica --- */
+    const tl = document.getElementById('timeline');
+    if (tl && Array.isArray(data.timeline)){
+      tl.innerHTML = '';
+      data.timeline.forEach(t=>{
+        const li = document.createElement('li');
+        li.style.left = `calc(${t.pct}% - 0px)`;
+        li.style.setProperty('--c', t.color || '#fff');
+        li.innerHTML = `<span>${t.label}</span>`;
+        tl.appendChild(li);
+      });
+    }
+  } catch(err){
+    console.warn('Dati non disponibili:', err);
+  }
+})();
+</script>
+
+
+</body>
+</html>
+
+
+

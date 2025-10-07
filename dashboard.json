@@ -1,0 +1,17 @@
+{
+  "kpis": [
+    { "id": "kpi-1", "value": 84 },
+    { "id": "kpi-2", "value": 53 },
+    { "id": "kpi-3", "value": 30 }
+  ],
+  "traffic": [38, 85, 22, 12],
+  "miniBars": [10,18,28,42,56,68,82,94],
+  "line": [12, 48, 65, 42, 30, 41, 18, 32, 12],
+  "calendar": { "events": [2,14,23,28] },
+  "timeline": [
+  { "label": "Task1", "pct": 10, "color": "#d51df2" },
+  { "label": "Task2", "pct": 35, "color": "#a8e063" },
+  { "label": "Task3", "pct": 60, "color": "#4da3ff" },
+  { "label": "Task4", "pct": 85, "color": "#ffb44d" }
+]
+}
